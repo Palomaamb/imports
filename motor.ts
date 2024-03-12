@@ -1,5 +1,10 @@
 import { Juego, juego } from './modelo';
-import { muestraPuntuacion, mostrarMensajePorPuntuacion } from './ui';
+
+let juegoActual: Juego = { ...juego };
+
+export function nuevaPartida(): void {
+    juegoActual = { ...juego };
+}
 
 export function dameCarta(): number {
     let carta: number = Math.floor(Math.random() * 10) + 1;
@@ -11,25 +16,12 @@ export function dameCarta(): number {
 
 export function sumaPuntuacion(carta: number): void {
     if (carta >= 10) {
-        juego.score += 0.5;
+        juegoActual.score += 0.5;
     } else {
-        juego.score += carta;
-    }
-    
-    muestraPuntuacion();
-    
-    if (juego.score > 7.5 || juego.score === 7.5) {
-        juego.gameOver = true;
-        mostrarMensajePorPuntuacion();
+        juegoActual.score += carta;
     }
 }
 
-export function nuevaPartida(): void {
-    juego.score = 0;
-    juego.gameOver = false;
-    muestraPuntuacion();
-}
-
-export function getJuego(): Juego {
-    return { ...juego };
+export function getEstadoJuego(): Juego {
+    return { ...juegoActual };
 }
