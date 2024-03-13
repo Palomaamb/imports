@@ -20,6 +20,9 @@ export function sumaPuntuacion(carta: number): void {
     } else {
         juegoActual.score += carta;
     }
+    if (juegoActual.score >= 7.5) {
+        juegoActual.gameOver = true;
+    }
 }
 
 export function getEstadoJuego(): Juego {

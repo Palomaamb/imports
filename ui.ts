@@ -12,6 +12,9 @@ export function crearJuego(): void {
                 const carta = dameCarta();
                 sumaPuntuacion(carta);
                 mostrarPuntuacion(juego.score);
+                if (juego.gameOver) {
+                    mostrarMensajePorPuntuacion(juego.score);
+                }
             }
         });
 
@@ -19,7 +22,8 @@ export function crearJuego(): void {
             const juego = getEstadoJuego();
             if (!juego.gameOver) {
                 juego.gameOver = true;
-                mostrarMensajePorPuntuacion();           }
+                mostrarMensajePorPuntuacion(juego.score);           
+            }
         });
 
         newGameButton.addEventListener('click', function () {
@@ -35,7 +39,19 @@ function mostrarPuntuacion(puntuacion: number): void {
         scoreElement.innerText = `Puntuación: ${puntuacion}`;
     }
 }
-function mostrarMensajePorPuntuacion() {
-    throw new Error('Function not implemented.');
-}
 
+function mostrarMensajePorPuntuacion(puntuacion: number): void {
+    let message = '';
+    if (puntuacion < 4) {
+        message = "Has sido muy conservador";
+    } else if (puntuacion === 5) {
+        message = "Te ha entrado el canguelo eh?";
+    } else if (puntuacion === 6 || puntuacion === 7) {
+        message = "Casi casi...";
+    } else if (puntuacion === 7.5) {
+        message = "¡Lo has clavado! ¡Enhorabuena!";
+    } else if (puntuacion > 7.5) {
+        message = "Te has pasado, has perdido";
+    }
+    alert(message);
+}
