@@ -3,7 +3,7 @@ export interface Juego {
     gameOver: boolean;
 };
 
-export const juego = {
+export const juego: Juego = {
     score: 0,
     gameOver: false
 };

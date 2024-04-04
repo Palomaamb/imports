@@ -1,10 +1,4 @@
-import { Juego, juego } from './modelo';
-
-let juegoActual: Juego = { ...juego };
-
-export function nuevaPartida(): void {
-    juegoActual = { ...juego };
-}
+import { juego } from './modelo';
 
 export function dameCarta(): number {
     let carta: number = Math.floor(Math.random() * 10) + 1;
@@ -16,15 +10,12 @@ export function dameCarta(): number {
 
 export function sumaPuntuacion(carta: number): void {
     if (carta >= 10) {
-        juegoActual.score += 0.5;
+        juego.score += 0.5;
     } else {
-        juegoActual.score += carta;
+        juego.score += carta;
     }
-    if (juegoActual.score >= 7.5) {
-        juegoActual.gameOver = true;
+    
+    if (juego.score > 7.5 || juego.score === 7.5) {
+        juego.gameOver = true;
     }
-}
-
-export function getEstadoJuego(): Juego {
-    return { ...juegoActual };
 }
