@@ -95,12 +95,18 @@ export function crearJuego(): void {
                 const carta = dameCarta();
                 mostrarCarta(carta);
                 sumaPuntuacion(carta);
+                if (juego.gameOver) {
+                    mostrarMensajePorPuntuacion(juego.score);
+                    nuevaPartida();
+                }
             }
         });
 
         standButton.addEventListener('click', function () {
             if (!juego.gameOver) {
                 juego.gameOver = true;
+                mostrarMensajePorPuntuacion(juego.score);
+                nuevaPartida();
             }
         });
 
