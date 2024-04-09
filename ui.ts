@@ -1,5 +1,5 @@
 import { juego } from './modelo';
-import { dameCarta, sumaPuntuacion, mostrarMensajePorPuntuacion } from './motor';
+import { dameCarta, sumaPuntuacion, compruebaPuntuacion, mostrarMensaje } from './motor';
 
 export function muestraPuntuacion(): void {
     const scoreElement = document.getElementById('score');
@@ -82,7 +82,8 @@ export function crearJuego(): void {
                 sumaPuntuacion(carta);
                 muestraPuntuacion();
                 if (juego.gameOver) {
-                    mostrarMensajePorPuntuacion(juego.score);
+                    compruebaPuntuacion(juego.score);
+                    mostrarMensaje();
                     nuevaPartida();
                 }
             }
@@ -91,7 +92,8 @@ export function crearJuego(): void {
         standButton.addEventListener('click', function () {
             if (!juego.gameOver) {
                 juego.gameOver = true;
-                mostrarMensajePorPuntuacion(juego.score);
+                compruebaPuntuacion(juego.score);
+                mostrarMensaje();
                 nuevaPartida();
             }
         });
