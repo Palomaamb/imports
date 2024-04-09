@@ -1,5 +1,5 @@
 import { juego } from './modelo';
-import { dameCarta, sumaPuntuacion } from './motor';
+import { dameCarta, sumaPuntuacion, mostrarMensajePorPuntuacion } from './motor';
 
 export function muestraPuntuacion(): void {
     const scoreElement = document.getElementById('score');
@@ -46,22 +46,6 @@ export function mostrarCarta(carta: number): void {
                 break;
         }
     }
-}
-
-export function mostrarMensajePorPuntuacion(score: number): void {
-    let message = '';
-    if (score < 4 || score === 4) {
-        message = "Has sido muy conservador";
-    } else if (score === 5 || score === 5.5) {
-        message = "Te ha entrado el canguelo eh?";
-    } else if (score === 6 || score === 6.5 || score === 7) {
-        message = "Casi casi...";
-    } else if (score === 7.5) {
-        message = "¡Lo has clavado! ¡Enhorabuena!";
-    } else if (score > 7.5) {
-        message = "Te has pasado, has perdido";
-    }
-    alert(message);
 }
 
 export function nuevaPartida(): void {
