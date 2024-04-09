@@ -50,11 +50,11 @@ export function mostrarCarta(carta: number): void {
 
 export function mostrarMensajePorPuntuacion(score: number): void {
     let message = '';
-    if (score < 4) {
+    if (score < 4 || score === 4) {
         message = "Has sido muy conservador";
-    } else if (score === 5) {
+    } else if (score === 5 || score === 5.5) {
         message = "Te ha entrado el canguelo eh?";
-    } else if (score === 6 || score === 7) {
+    } else if (score === 6 || score === 6.5 || score === 7) {
         message = "Casi casi...";
     } else if (score === 7.5) {
         message = "¡Lo has clavado! ¡Enhorabuena!";
@@ -83,6 +83,7 @@ export function nuevaPartida(): void {
 }
 
 export function crearJuego(): void {
+
     muestraPuntuacion();
 
     const hitButton = document.getElementById('hit');
@@ -95,6 +96,7 @@ export function crearJuego(): void {
                 const carta = dameCarta();
                 mostrarCarta(carta);
                 sumaPuntuacion(carta);
+                muestraPuntuacion();
                 if (juego.gameOver) {
                     mostrarMensajePorPuntuacion(juego.score);
                     nuevaPartida();
